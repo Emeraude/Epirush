@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Fri Dec 13 22:34:40 2013 broggi_t
+** Last update Fri Dec 13 23:36:07 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -28,10 +28,9 @@ void		print_line(char *str)
 	my_putstr(atm[10]);
       else if (LOW(str[i]) >= 'a' && LOW(str[i]) <= 'z')
 	my_putstr(atm[LOW(str[i]) - 'a' + 11]);
-      my_putchar((i + 1 != len) ? ('.') : ('\0'));
+      my_putchar((i + 1 != len) ? ('.') : ('\n'));
       i++;
     }
-  my_putchar('\n');
 }
 
 int		check_line(char *str)
@@ -45,7 +44,7 @@ int		check_line(char *str)
 	    (str[i] >= 'A' && str[i] <= 'Z') ||
 	    (str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
 	{
-	  my_puterr("An incorrect character has been found.\n");
+	  my_puterr("\033[31mAn incorrect character has been found.\n\033[0m");
 	  return (1);
 	}
       i++;
