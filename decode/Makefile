@@ -5,14 +5,16 @@
 ## Login   <bouche_1@epitech.net>
 ## 
 ## Started on  Fri Dec 13 19:14:45 2013 bouche_1
-## Last update Fri Dec 13 19:21:47 2013 bouche_1
+## Last update Fri Dec 13 21:02:01 2013 bouche_1
 ##
 
 NAME=		décodeur
 
 DEP=		header.h
 
-SRC=		decode.c
+SRC=		decode.c \
+		../get_next_line.c \
+		../my_str.c
 
 CFLAGS+=	-W -Wall -pedantic -ansi
 
