@@ -6,19 +6,23 @@
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
 <<<<<<< HEAD
+<<<<<<< HEAD
 ** Last update Sat Dec 14 18:22:48 2013 bouche_1
 =======
 ** Last update Sat Dec 14 18:18:24 2013 bouche_1
 >>>>>>> add7ccb896158341efff4e94c27f79ad353b2e4e
+=======
+** Last update Sat Dec 14 18:23:11 2013 broggi_t
+>>>>>>> 90de2ddbdcde428732db0daf216d569c40ebbd35
 */
 
 #include "my_str.h"
 #include "table.h"
 #include "decode.h"
 
-void	my_compare(char *src)
+void		my_compare(char *src)
 {
-  int	i;
+  int		i;
 
   i = 0;
   while (my_strcmp(src, g_tab[i].str) != 0)
@@ -41,11 +45,11 @@ unsigned int	check_silence(char *str, int inline_pos)
   return (0);
 }
 
-int	check_char(char *str, int l_pos)
+int		check_char(char *str, int l_pos)
 {
-  int	jump;
-  char	*src;
-  int	end;
+  int		jump;
+  char		*src;
+  int		end;
 
   jump = 0;
   end = 0;
