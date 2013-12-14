@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 18:11:51 2013 bouche_1
+** Last update Sat Dec 14 18:18:24 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -32,7 +32,9 @@ int	check_silence(char *str, int inline_pos)
       i = i + 1;
       inline_pos = inline_pos + 1;
     }
-  return (i % 2);
+  if (i == 3)
+    return (1);
+  return (0);
 }
 
 int	check_char(char *str, int l_pos)
@@ -74,6 +76,7 @@ void		decode(char *str)
       if ((check_silence(str, i)) == 1)
 	i = i + 3;
       else
-	i = i + (check_char(str, i));
+	check_char(str, i);
+      i = i + 1;
     }
 }
