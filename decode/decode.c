@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 19:27:08 2013 bouche_1
+** Last update Sat Dec 14 19:31:49 2013 broggi_t
 */
 
 #include "my_str.h"
@@ -17,8 +17,13 @@ void		my_compare(char *src)
   int		i;
 
   i = 0;
-  while (my_strcmp(src, g_tab[i].str) != 0)
+  while (my_strcmp(src, g_tab[i].str) && i < 37)
     i = i + 1;
+  if (i == 37)
+    {
+      my_puterr("\033[31mAn incorrect character has been found.\n\033[0m");
+      exit(1);
+    }
   my_putchar(g_tab[i].c);
 }
 
