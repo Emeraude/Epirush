@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Sat Dec 14 11:54:16 2013 broggi_t
-** Last update Sat Dec 14 16:59:49 2013 bouche_1
+** Last update Sat Dec 14 18:04:21 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -38,11 +38,10 @@ int		main(void)
 
   while ((stdin = get_next_line(0)) != NULL)
     {
-      my_putstr(stdin);
-      my_putchar('\n');
       if (check_line(stdin) != 0)
 	return (1);
       decode(stdin);
+      my_putchar('\n');
       free(stdin);
     }
   return (0);

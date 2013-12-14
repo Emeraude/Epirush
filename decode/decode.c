@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 17:52:24 2013 bouche_1
+** Last update Sat Dec 14 18:05:57 2013 broggi_t
 */
 
 #include "my_str.h"
@@ -62,15 +62,16 @@ int	check_char(char *str, int l_pos)
   if (end == 0)
     src[jump - 1] = '\0';
   my_compare(src);
+  free(src);
   return (jump);
 }
 
-void	decode(char *str)
+void		decode(char *str)
 {
-  int	i;
+  unsigned int	i;
 
   i = 0;
-  while (str[i] != '\0')
+  while (i < my_strlen(str))
     {
       if (str[i] == '.')
 	{
@@ -81,6 +82,5 @@ void	decode(char *str)
 	}
       else
 	i = i + (check_char(str, i));
-      my_putchar('\n');
     }
 }
