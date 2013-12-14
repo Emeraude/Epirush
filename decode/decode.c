@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 16:55:53 2013 bouche_1
+** Last update Sat Dec 14 17:52:24 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -32,35 +32,36 @@ int	check_silence(char *str, int inline_pos)
       i = i + 1;
       inline_pos = inline_pos + 1;
     }
+  if (i == 3)
+    my_putstr("SILENCE");
   return (i % 2);
 }
 
 int	check_char(char *str, int l_pos)
 {
   int	jump;
-  char	*dest;
   char	*src;
+  int	end;
 
   jump = 0;
-  src = malloc(sizeof(char) * 11);
-  while (jump <= 11)
+  end = 0;
+  src = malloc(sizeof(char) * 12);
+  src[11] = '\0';
+  while (jump <= 11 && end == 0)
     {
-      src[jump] = str[l_pos];
-      if (str[l_pos] == '.' && str[l_pos + 1] == '.' && str[l_pos + 2] == '.')
+      if (check_silence(str, l_pos) == 1)
 	{
-	  dest = malloc(sizeof(char) * (jump - 1));
-	  my_strcpy(dest, src);
+	  src[jump] = '\0';
+	  end = 1;
 	}
       else
-	{
-	  dest = malloc(sizeof(char) * jump);
-	  my_strcpy(dest, src);
-	}
-      my_compare(dest);
+	src[jump] = str[l_pos];
       jump = jump + 1;
       l_pos = l_pos + 1;
     }
-  my_putstr(dest);
+  if (end == 0)
+    src[jump - 1] = '\0';
+  my_compare(src);
   return (jump);
 }
 
@@ -72,12 +73,14 @@ void	decode(char *str)
   while (str[i] != '\0')
     {
       if (str[i] == '.')
-	if ((check_silence(str, i)) == 1)
-	  i = i + 2;
-	else
-	  i = i - 1;
+	{
+	  if (check_silence(str, i) == 1)
+	    i = i + 2;
+	  else
+	    i = i + (check_char(str, i));
+	}
       else
-	i = i + (check_char(str, i));     
+	i = i + (check_char(str, i));
+      my_putchar('\n');
     }
-  my_putchar('\n');
 }
