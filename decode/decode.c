@@ -5,19 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-** Last update Sat Dec 14 18:22:48 2013 bouche_1
-=======
-** Last update Sat Dec 14 18:18:24 2013 bouche_1
->>>>>>> add7ccb896158341efff4e94c27f79ad353b2e4e
-=======
-** Last update Sat Dec 14 18:23:11 2013 broggi_t
->>>>>>> 90de2ddbdcde428732db0daf216d569c40ebbd35
-=======
-** Last update Sat Dec 14 18:41:51 2013 broggi_t
->>>>>>> 4245c8e6d393deb1208cb1a7e9c037b2fbd7fb6c
+** Last update Sat Dec 14 19:06:04 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -81,7 +69,7 @@ void		decode(char *str)
   i = 0;
   while (i < my_strlen(str))
     {
-      if (check_silence(str, i) == 1)
+      if (str[i + 1] == '.' && check_silence(str, i) == 1)
 	i = i + 3;
       else
 	i = i + check_char(str, i);
