@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Sat Dec 14 01:18:20 2013 broggi_t
-** Last update Sat Dec 14 13:58:48 2013 broggi_t
+** Last update Sat Dec 14 15:34:07 2013 broggi_t
 */
 
 #ifndef TABLE_H_
@@ -30,7 +30,6 @@ t_tab           g_tab[] =
   {'8', "_._._.-.-"},
   {'9', "_._._._.-"},
   {'.', "-._.-._.-._"},
-  {' ', "."},
   {'a', "-._"},
   {'b', "_.-.-.-"},
   {'c', "_.-._.-"},
