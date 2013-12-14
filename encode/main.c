@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Sat Dec 14 02:57:00 2013 broggi_t
+** Last update Sat Dec 14 15:34:46 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -28,7 +28,7 @@ void		print_line(char *str)
       while (g_tab[j].c != LOW(str[i]))
 	j++;
       my_putstr(g_tab[j].str);
-      my_putstr((i + 1 != len) ? ("...") : ("\n"));
+      my_putstr((i + 1 != len) ? ("\033[1;35m...\033[0m") : ("\n"));
       i++;
     }
 }
@@ -43,7 +43,7 @@ int		check_line(char *str)
       if (!((str[i] >= 'a' && str[i] <= 'z') ||
 	    (str[i] >= 'A' && str[i] <= 'Z') ||
 	    (str[i] >= '0' && str[i] <= '9') ||
-	    str[i] == '.' || str[i] == ' '))
+	    str[i] == '.'))
 	{
 	  my_puterr("\033[31mAn incorrect character has been found : ");
 	  my_putcharerr(str[i]);
