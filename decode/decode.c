@@ -1,141 +1,65 @@
 /*
-** decode.c for DECODE in /home/bouche_1/TESTS_INTERNE/rush/decode
+** decode.c for rush in /home/broggi_t/rush/dec
 ** 
-** Made by bouche_1
-** Login   <bouche_1@epitech.net>
+** Made by broggi_t
+** Login   <broggi_t@epitech.net>
 ** 
-** Started on  Fri Dec 13 19:06:11 2013 bouche_1
-** Last update Fri Dec 13 22:11:29 2013 bouche_1
+** Started on  Sat Dec 14 11:54:16 2013 broggi_t
+** Last update Sat Dec 14 15:29:43 2013 broggi_t
 */
 
-#include "header.h"
-#include "../my_str.h"
+#include <stdlib.h>
+#include "get_next_line.h"
+#include "my_str.h"
+#include "table.h"
 
-void	my_four_length(char *str)
+void		my_putnstr(char *str, unsigned int n)
 {
-  int	i;
-  int	t;
-  int	u;
+  unsigned int	i;
 
-  t = 0;
   i = 0;
-  u = 0;
-  while (str[i] != '\0')
+  while (i < n)
     {
-      if (str[i] == '_' && u == 0)
-	u = i + 1;
-      else if (str[i] == '-' && t == 0)
-	t = i + 1;
-      i = i + 1;
+      my_putchar(str[i++]);
     }
 }
 
-void	my_lite_char(char *str)
+void		print_line(char *str)
 {
-  if (str[0] == '_')
-    my_putchar('N');
-  else if (str[1] == '-')
-    my_putchar('I');
-  else
-    my_putchar('A');
+
 }
 
-void	my_littlest_char(char *str)
+int		check_line(char *str)
 {
-  if (str[0] == '-')
-    my_putchar('E');
-  else
-    my_putchar('T');
-}
-
-void	my_translator_alpha(char *str, int line_length)
-{
-  if (str[0] == '.')
-    my_putstr("SILENCE I'LL KILL YOU!\n");
-  else
-    {
-      if (line_length == '1' && str[0] != '.')
-	my_littlest_char(str);
-      else if (line_length == '2')
-	my_lite_char(str);
-      else if (line_length == '3')
-	my_four_length(str);
-      else if (line_length == '4')
-	my_maybe_little_liter_char(str);
-    }
-}
-void	my_dispatcher(char *str, int line_length)
-{
-  if (line_length > 4)
-    my_translator_numeric(str);
-  else
-    my_translator_alpha(str, line_length);
-}
-
-void	my_less(char *str)
-{
-  int	i;
+  unsigned int	i;
 
   i = 0;
-  while (str[i] == '-')
+  while (str[i])
     {
-      i = i + 1;
-    }
-  my_putchar(i + '0');
-}
-
-void	my_more(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] == '_')
-    {
-      i = i + 1;
-    }
-  my_putchar((i + 5) + '0');
-}
-
-void	my_translator_numeric(char *str)
-{
-  if (str[0] == '-')
-    my_less(str);
-  else if (str[0] == '_' && str[4] == '-')
-    my_more(str);
-  else if (str[0] == '_' && str[4] == '_')
-    my_putchar('0');
-}
-
-int	my_verif_and_count(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != '\0')
-    {
-      if (str[i] != '-' && str[i] != '_' && str[i] != '.' && str[i] != '\0')
+      if (!(str[i] == '.' || str[i] == '-' || str[i] == '_'))
 	{
-	  my_puterr("TROLOL T TRO NUL\n");
-	  exit(EXIT_FAILURE);
+	  my_puterr("\033[31mAn incorrect character has been found : ");
+	  my_putcharerr(str[i]);
+	  my_puterr(".\n\033[0m");
+	  return (1);
 	}
-      i = i + 1;
+      i++;
     }
-  my_putstr("-- It passed ! WELL DONE ! --\n");
-  return (i);
+  return (0);
 }
 
-int	main(void)
+int		main(void)
 {
-  char	*str;
-  int	line_length;
+  char		*stdin;
 
-  line_length = 0;
-  while ((str = get_next_line(0)) != NULL)
+  while ((stdin = get_next_line(0)) != NULL)
     {
-      line_length = my_verif_and_count(str);
-      my_dispatcher(str, line_length);
-      free(str);
+      my_putstr(stdin);
       my_putchar('\n');
+      if (check_line(stdin) != 0)
+	return (1);
+      print_line(stdin);
+      free(stdin);
     }
   return (0);
 }

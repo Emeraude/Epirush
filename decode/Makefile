@@ -1,38 +1,37 @@
 ##
-## Makefile for MAKE in /home/bouche_1/TESTS_INTERNE/rush/decode
+## Makefile for rush in /home/broggi_t/rush/encode
 ## 
-## Made by bouche_1
-## Login   <bouche_1@epitech.net>
+## Made by broggi_t
+## Login   <broggi_t@epitech.net>
 ## 
-## Started on  Fri Dec 13 19:14:45 2013 bouche_1
-## Last update Fri Dec 13 21:02:01 2013 bouche_1
+## Started on  Fri Dec 13 19:34:20 2013 broggi_t
+## Last update Sat Dec 14 11:58:06 2013 broggi_t
 ##
 
-NAME=		décodeur
+SRCS	= decode.c \
+	  ../get_next_line.c \
+	  ../my_str.c
 
-DEP=		header.h
+OBJS	= $(SRCS:.c=.o)
 
-SRC=		decode.c \
-		../get_next_line.c \
-		../my_str.c
+NAME	= décodeur
 
-CFLAGS+=	-W -Wall -pedantic -ansi
+CFLAGS	+= -W -Wall -Wextra -pedantic -ansi
+CFLAGS	+= -I ..
 
-OBJ=		$(SRC:.c=.o)
+RM	= rm -f
 
-CC=		cc
+all:	$(NAME)
 
-RM=		rm -f
-
-all:		$(NAME)
-
-$(NAME):	$(OBJ)
-		$(CC) $(DEP) $(OBJ) -o $(NAME)
+$(NAME):	$(OBJS)
+	cc -o $(NAME) $(OBJS)
 
 clean:
-		$(RM) $(OBJ)
+	$(RM) $(OBJS)
 
-fclean:		clean
-		$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
-.PHONY:		all clean fclean re
+re:	fclean all
+
+.PHONY:	all clean fclean re
