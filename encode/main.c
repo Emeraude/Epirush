@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Sat Dec 14 15:34:46 2013 broggi_t
+** Last update Sat Dec 14 17:02:13 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -28,7 +28,7 @@ void		print_line(char *str)
       while (g_tab[j].c != LOW(str[i]))
 	j++;
       my_putstr(g_tab[j].str);
-      my_putstr((i + 1 != len) ? ("\033[1;35m...\033[0m") : ("\n"));
+      my_putstr((i + 1 != len) ? ("...") : ("\n"));
       i++;
     }
 }
