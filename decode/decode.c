@@ -5,11 +5,22 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 16:34:55 2013 bouche_1
+** Last update Sat Dec 14 16:55:53 2013 bouche_1
 */
 
-#include "../my_str.h"
+#include "my_str.h"
+#include "table.h"
 #include "decode.h"
+
+void	my_compare(char *src)
+{
+  int	i;
+
+  i = 0;
+  while (my_strcmp(src, g_tab[i].str) != 0)
+    i = i + 1;
+  my_putchar(g_tab[i].c);
+}
 
 int	check_silence(char *str, int inline_pos)
 {
@@ -45,6 +56,7 @@ int	check_char(char *str, int l_pos)
 	  dest = malloc(sizeof(char) * jump);
 	  my_strcpy(dest, src);
 	}
+      my_compare(dest);
       jump = jump + 1;
       l_pos = l_pos + 1;
     }
@@ -65,14 +77,7 @@ void	decode(char *str)
 	else
 	  i = i - 1;
       else
-	i = i + (check_char(str, i));
-      
+	i = i + (check_char(str, i));     
     }
   my_putchar('\n');
-}
-
-int	main()
-{
-  decode("-.-.-.-...-...-._.-.-...-._.-.-..._._._");
-  return (0);
 }

@@ -5,29 +5,13 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Sat Dec 14 11:54:16 2013 broggi_t
-** Last update Sat Dec 14 15:29:43 2013 broggi_t
+** Last update Sat Dec 14 16:59:49 2013 bouche_1
 */
 
 #include <stdlib.h>
 #include "get_next_line.h"
 #include "my_str.h"
-#include "table.h"
-
-void		my_putnstr(char *str, unsigned int n)
-{
-  unsigned int	i;
-
-  i = 0;
-  while (i < n)
-    {
-      my_putchar(str[i++]);
-    }
-}
-
-void		print_line(char *str)
-{
-
-}
+#include "decode.h"
 
 int		check_line(char *str)
 {
@@ -58,7 +42,7 @@ int		main(void)
       my_putchar('\n');
       if (check_line(stdin) != 0)
 	return (1);
-      print_line(stdin);
+      decode(stdin);
       free(stdin);
     }
   return (0);

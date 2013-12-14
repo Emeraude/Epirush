@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 16:07:36 2013 bouche_1
-** Last update Sat Dec 14 16:29:52 2013 bouche_1
+** Last update Sat Dec 14 16:58:44 2013 bouche_1
 */
 
 #ifndef DECODE_H_
@@ -15,5 +15,6 @@
 # include <stdlib.h>
 
 char	*my_strcpy(char *dest, char *src);
+void	decode(char *str);
 
 #endif /* !DECODE_H_ */
