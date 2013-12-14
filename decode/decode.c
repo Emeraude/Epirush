@@ -1,141 +1,78 @@
 /*
-** decode.c for DECODE in /home/bouche_1/TESTS_INTERNE/rush/decode
+** decode.c for DECODE in /home/bouche_1/TESTS_INTERNE/rush/rush2/decode
 ** 
 ** Made by bouche_1
 ** Login   <bouche_1@epitech.net>
 ** 
-** Started on  Fri Dec 13 19:06:11 2013 bouche_1
-** Last update Fri Dec 13 22:11:29 2013 bouche_1
+** Started on  Sat Dec 14 15:39:02 2013 bouche_1
+** Last update Sat Dec 14 16:34:55 2013 bouche_1
 */
 
-#include "header.h"
 #include "../my_str.h"
+#include "decode.h"
 
-void	my_four_length(char *str)
-{
-  int	i;
-  int	t;
-  int	u;
-
-  t = 0;
-  i = 0;
-  u = 0;
-  while (str[i] != '\0')
-    {
-      if (str[i] == '_' && u == 0)
-	u = i + 1;
-      else if (str[i] == '-' && t == 0)
-	t = i + 1;
-      i = i + 1;
-    }
-}
-
-void	my_lite_char(char *str)
-{
-  if (str[0] == '_')
-    my_putchar('N');
-  else if (str[1] == '-')
-    my_putchar('I');
-  else
-    my_putchar('A');
-}
-
-void	my_littlest_char(char *str)
-{
-  if (str[0] == '-')
-    my_putchar('E');
-  else
-    my_putchar('T');
-}
-
-void	my_translator_alpha(char *str, int line_length)
-{
-  if (str[0] == '.')
-    my_putstr("SILENCE I'LL KILL YOU!\n");
-  else
-    {
-      if (line_length == '1' && str[0] != '.')
-	my_littlest_char(str);
-      else if (line_length == '2')
-	my_lite_char(str);
-      else if (line_length == '3')
-	my_four_length(str);
-      else if (line_length == '4')
-	my_maybe_little_liter_char(str);
-    }
-}
-void	my_dispatcher(char *str, int line_length)
-{
-  if (line_length > 4)
-    my_translator_numeric(str);
-  else
-    my_translator_alpha(str, line_length);
-}
-
-void	my_less(char *str)
+int	check_silence(char *str, int inline_pos)
 {
   int	i;
 
   i = 0;
-  while (str[i] == '-')
+  while (str[inline_pos] == '.')
     {
       i = i + 1;
+      inline_pos = inline_pos + 1;
     }
-  my_putchar(i + '0');
+  return (i % 2);
 }
 
-void	my_more(char *str)
+int	check_char(char *str, int l_pos)
 {
-  int	i;
+  int	jump;
+  char	*dest;
+  char	*src;
 
-  i = 0;
-  while (str[i] == '_')
+  jump = 0;
+  src = malloc(sizeof(char) * 11);
+  while (jump <= 11)
     {
-      i = i + 1;
-    }
-  my_putchar((i + 5) + '0');
-}
-
-void	my_translator_numeric(char *str)
-{
-  if (str[0] == '-')
-    my_less(str);
-  else if (str[0] == '_' && str[4] == '-')
-    my_more(str);
-  else if (str[0] == '_' && str[4] == '_')
-    my_putchar('0');
-}
-
-int	my_verif_and_count(char *str)
-{
-  int	i;
-
-  i = 0;
-  while (str[i] != '\0')
-    {
-      if (str[i] != '-' && str[i] != '_' && str[i] != '.' && str[i] != '\0')
+      src[jump] = str[l_pos];
+      if (str[l_pos] == '.' && str[l_pos + 1] == '.' && str[l_pos + 2] == '.')
 	{
-	  my_puterr("TROLOL T TRO NUL\n");
-	  exit(EXIT_FAILURE);
+	  dest = malloc(sizeof(char) * (jump - 1));
+	  my_strcpy(dest, src);
 	}
-      i = i + 1;
+      else
+	{
+	  dest = malloc(sizeof(char) * jump);
+	  my_strcpy(dest, src);
+	}
+      jump = jump + 1;
+      l_pos = l_pos + 1;
     }
-  my_putstr("-- It passed ! WELL DONE ! --\n");
-  return (i);
+  my_putstr(dest);
+  return (jump);
 }
 
-int	main(void)
+void	decode(char *str)
 {
-  char	*str;
-  int	line_length;
+  int	i;
 
-  line_length = 0;
-  while ((str = get_next_line(0)) != NULL)
+  i = 0;
+  while (str[i] != '\0')
     {
-      line_length = my_verif_and_count(str);
-      my_dispatcher(str, line_length);
-      free(str);
-      my_putchar('\n');
+      if (str[i] == '.')
+	if ((check_silence(str, i)) == 1)
+	  i = i + 2;
+	else
+	  i = i - 1;
+      else
+	i = i + (check_char(str, i));
+      
     }
+  my_putchar('\n');
+}
+
+int	main()
+{
+  decode("-.-.-.-...-...-._.-.-...-._.-.-..._._._");
   return (0);
 }
