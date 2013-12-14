@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 18:05:57 2013 broggi_t
+** Last update Sat Dec 14 18:11:51 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -32,8 +32,6 @@ int	check_silence(char *str, int inline_pos)
       i = i + 1;
       inline_pos = inline_pos + 1;
     }
-  if (i == 3)
-    my_putstr("SILENCE");
   return (i % 2);
 }
 
@@ -73,13 +71,8 @@ void		decode(char *str)
   i = 0;
   while (i < my_strlen(str))
     {
-      if (str[i] == '.')
-	{
-	  if (check_silence(str, i) == 1)
-	    i = i + 2;
-	  else
-	    i = i + (check_char(str, i));
-	}
+      if ((check_silence(str, i)) == 1)
+	i = i + 3;
       else
 	i = i + (check_char(str, i));
     }
