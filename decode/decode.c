@@ -1,65 +1,78 @@
 /*
-** decode.c for rush in /home/broggi_t/rush/dec
+** decode.c for DECODE in /home/bouche_1/TESTS_INTERNE/rush/rush2/decode
 ** 
-** Made by broggi_t
-** Login   <broggi_t@epitech.net>
+** Made by bouche_1
+** Login   <bouche_1@epitech.net>
 ** 
-** Started on  Sat Dec 14 11:54:16 2013 broggi_t
-** Last update Sat Dec 14 15:29:43 2013 broggi_t
+** Started on  Sat Dec 14 15:39:02 2013 bouche_1
+** Last update Sat Dec 14 16:34:55 2013 bouche_1
 */
 
-#include <stdlib.h>
-#include "get_next_line.h"
-#include "my_str.h"
-#include "table.h"
+#include "../my_str.h"
+#include "decode.h"
 
-void		my_putnstr(char *str, unsigned int n)
+int	check_silence(char *str, int inline_pos)
 {
-  unsigned int	i;
+  int	i;
 
   i = 0;
-  while (i < n)
+  while (str[inline_pos] == '.')
     {
-      my_putchar(str[i++]);
+      i = i + 1;
+      inline_pos = inline_pos + 1;
     }
+  return (i % 2);
 }
 
-void		print_line(char *str)
+int	check_char(char *str, int l_pos)
 {
+  int	jump;
+  char	*dest;
+  char	*src;
 
-}
-
-int		check_line(char *str)
-{
-  unsigned int	i;
-
-  i = 0;
-  while (str[i])
+  jump = 0;
+  src = malloc(sizeof(char) * 11);
+  while (jump <= 11)
     {
-      if (!(str[i] == '.' || str[i] == '-' || str[i] == '_'))
+      src[jump] = str[l_pos];
+      if (str[l_pos] == '.' && str[l_pos + 1] == '.' && str[l_pos + 2] == '.')
 	{
-	  my_puterr("\033[31mAn incorrect character has been found : ");
-	  my_putcharerr(str[i]);
-	  my_puterr(".\n\033[0m");
-	  return (1);
+	  dest = malloc(sizeof(char) * (jump - 1));
+	  my_strcpy(dest, src);
 	}
-      i++;
+      else
+	{
+	  dest = malloc(sizeof(char) * jump);
+	  my_strcpy(dest, src);
+	}
+      jump = jump + 1;
+      l_pos = l_pos + 1;
     }
-  return (0);
+  my_putstr(dest);
+  return (jump);
 }
 
-int		main(void)
+void	decode(char *str)
 {
-  char		*stdin;
+  int	i;
 
-  while ((stdin = get_next_line(0)) != NULL)
+  i = 0;
+  while (str[i] != '\0')
     {
-      my_putstr(stdin);
-      my_putchar('\n');
-      if (check_line(stdin) != 0)
-	return (1);
-      print_line(stdin);
-      free(stdin);
+      if (str[i] == '.')
+	if ((check_silence(str, i)) == 1)
+	  i = i + 2;
+	else
+	  i = i - 1;
+      else
+	i = i + (check_char(str, i));
+      
     }
+  my_putchar('\n');
+}
+
+int	main()
+{
+  decode("-.-.-.-...-...-._.-.-...-._.-.-..._._._");
   return (0);
 }
