@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 18:11:51 2013 bouche_1
+** Last update Sat Dec 14 18:18:28 2013 broggi_t
 */
 
 #include "my_str.h"
@@ -22,9 +22,9 @@ void	my_compare(char *src)
   my_putchar(g_tab[i].c);
 }
 
-int	check_silence(char *str, int inline_pos)
+unsigned int	check_silence(char *str, int inline_pos)
 {
-  int	i;
+  unsigned int	i;
 
   i = 0;
   while (str[inline_pos] == '.')
@@ -44,6 +44,8 @@ int	check_char(char *str, int l_pos)
   jump = 0;
   end = 0;
   src = malloc(sizeof(char) * 12);
+  if (src == NULL)
+    exit(1);
   src[11] = '\0';
   while (jump <= 11 && end == 0)
     {
@@ -71,7 +73,7 @@ void		decode(char *str)
   i = 0;
   while (i < my_strlen(str))
     {
-      if ((check_silence(str, i)) == 1)
+      if (check_silence(str, i) == 1)
 	i = i + 3;
       else
 	i = i + (check_char(str, i));
