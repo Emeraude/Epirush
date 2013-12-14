@@ -5,30 +5,30 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Fri Dec 13 23:36:07 2013 broggi_t
+** Last update Sat Dec 14 01:55:35 2013 broggi_t
 */
 
 #include <stdlib.h>
 #include "encode.h"
 #include "get_next_line.h"
 #include "my_str.h"
+#include "table.h"
 
 void		print_line(char *str)
 {
   unsigned int	i;
   unsigned int	len;
+  unsigned int	j;
 
   i = 0;
   len = my_strlen(str);
   while (i < len)
     {
-      if (str[i] >= '0' && str[i] <= '9')
-	my_putstr(atm[str[i] - '0']);
-      else if (str[i] == '.')
-	my_putstr(atm[10]);
-      else if (LOW(str[i]) >= 'a' && LOW(str[i]) <= 'z')
-	my_putstr(atm[LOW(str[i]) - 'a' + 11]);
-      my_putchar((i + 1 != len) ? ('.') : ('\n'));
+      j = 0;
+      while (g_tab[j].c != str[i])
+	j++;
+      my_putstr(g_tab[j].str);
+      my_putstr((i + 1 != len) ? ("...") : ("\n"));
       i++;
     }
 }
@@ -42,7 +42,8 @@ int		check_line(char *str)
     {
       if (!((str[i] >= 'a' && str[i] <= 'z') ||
 	    (str[i] >= 'A' && str[i] <= 'Z') ||
-	    (str[i] >= '0' && str[i] <= '9') || str[i] == '.'))
+	    (str[i] >= '0' && str[i] <= '9') ||
+	    str[i] == '.' || str[i] == ' '))
 	{
 	  my_puterr("\033[31mAn incorrect character has been found.\n\033[0m");
 	  return (1);
@@ -56,7 +57,6 @@ int		main(void)
 {
   char		*stdin;
 
-  my_fulfil_tab();
   while ((stdin = get_next_line(0)) != NULL)
     {
       if (check_line(stdin) != 0)
