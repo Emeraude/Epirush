@@ -5,7 +5,7 @@
 ## Login   <bouche_1@epitech.net>
 ## 
 ## Started on  Sat Dec 14 16:02:32 2013 bouche_1
-## Last update Sat Dec 14 17:00:36 2013 bouche_1
+## Last update Sat Dec 14 18:35:35 2013 broggi_t
 ##
 
 NAME=		décodeur
@@ -21,7 +21,7 @@ OBJ=		$(SRC:.c=.o)
 
 DEP=		decode.h
 
-CFLAGS+=	-Wall -Wextra -Werror -ansi -pedantic
+CFLAGS+=	-W -Wall -Wextra -Werror -ansi -pedantic
 CFLAGS+=	-I ..
 
 all:		$(NAME)

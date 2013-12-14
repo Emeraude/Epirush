@@ -7,6 +7,7 @@
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ** Last update Sat Dec 14 18:22:48 2013 bouche_1
 =======
 ** Last update Sat Dec 14 18:18:24 2013 bouche_1
@@ -14,6 +15,9 @@
 =======
 ** Last update Sat Dec 14 18:23:11 2013 broggi_t
 >>>>>>> 90de2ddbdcde428732db0daf216d569c40ebbd35
+=======
+** Last update Sat Dec 14 18:41:51 2013 broggi_t
+>>>>>>> 4245c8e6d393deb1208cb1a7e9c037b2fbd7fb6c
 */
 
 #include "my_str.h"
@@ -45,32 +49,26 @@ unsigned int	check_silence(char *str, int inline_pos)
   return (0);
 }
 
-int		check_char(char *str, int l_pos)
+int		check_char(char *str, unsigned int l_pos)
 {
   int		jump;
   char		*src;
-  int		end;
 
   jump = 0;
-  end = 0;
   src = malloc(sizeof(char) * 12);
   if (src == NULL)
     exit(1);
   src[11] = '\0';
-  while (jump <= 11 && end == 0)
+  while (jump <= 11)
     {
       if (check_silence(str, l_pos) == 1)
-	{
-	  src[jump] = '\0';
-	  end = 1;
-	}
+	src[jump] = '\0';
       else
 	src[jump] = str[l_pos];
       jump = jump + 1;
       l_pos = l_pos + 1;
     }
-  if (end == 0)
-    src[jump - 1] = '\0';
+  src[jump - 1] = '\0';
   my_compare(src);
   free(src);
   return (jump);
@@ -86,7 +84,6 @@ void		decode(char *str)
       if (check_silence(str, i) == 1)
 	i = i + 3;
       else
-	check_char(str, i);
-      i = i + 1;
+	i = i + check_char(str, i);
     }
 }
