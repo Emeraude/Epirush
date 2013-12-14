@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 19:31:49 2013 broggi_t
+** Last update Sat Dec 14 19:44:31 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -55,7 +55,12 @@ int		check_char(char *str, unsigned int l_pos)
   while (jump <= 11)
     {
       if (check_silence(str, l_pos) == 1)
-	src[jump] = '\0';
+	{
+	  src[jump] = '\0';
+	  my_compare(src);
+	  free(src);
+	  return (jump);
+	}
       else
 	src[jump] = str[l_pos];
       jump = jump + 1;
