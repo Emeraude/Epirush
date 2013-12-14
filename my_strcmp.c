@@ -5,10 +5,10 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Sat Dec 14 16:33:30 2013 broggi_t
-** Last update Sat Dec 14 16:36:17 2013 broggi_t
+** Last update Sat Dec 14 16:38:49 2013 broggi_t
 */
 
-#include "my_strcmp.h"
+#include "my_str.h"
 
 int		my_strcmp(char *s1, char *s2)
 {
