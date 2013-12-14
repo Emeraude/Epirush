@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 17:41:45 2013 bouche_1
+** Last update Sat Dec 14 17:52:24 2013 bouche_1
 */
 
 #include "my_str.h"
@@ -17,10 +17,8 @@ void	my_compare(char *src)
   int	i;
 
   i = 0;
-  my_putchar('C');
   while (my_strcmp(src, g_tab[i].str) != 0)
     i = i + 1;
-  my_putchar('C');
   my_putchar(g_tab[i].c);
 }
 
@@ -62,8 +60,7 @@ int	check_char(char *str, int l_pos)
       l_pos = l_pos + 1;
     }
   if (end == 0)
-    src[jump] = '\0';
-  my_putstr(src);
+    src[jump - 1] = '\0';
   my_compare(src);
   return (jump);
 }
