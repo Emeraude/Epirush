@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Sat Dec 14 01:55:35 2013 broggi_t
+** Last update Sat Dec 14 02:03:48 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -25,7 +25,7 @@ void		print_line(char *str)
   while (i < len)
     {
       j = 0;
-      while (g_tab[j].c != str[i])
+      while (g_tab[j].c != LOW(str[i]))
 	j++;
       my_putstr(g_tab[j].str);
       my_putstr((i + 1 != len) ? ("...") : ("\n"));
