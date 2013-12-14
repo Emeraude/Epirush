@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sat Dec 14 19:06:04 2013 bouche_1
+** Last update Sat Dec 14 19:27:08 2013 bouche_1
 */
 
 #include "my_str.h"
