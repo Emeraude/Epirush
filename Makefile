@@ -5,15 +5,17 @@
 ## Login   <broggi_t@epitech.net>
 ## 
 ## Started on  Sat Dec 14 02:31:56 2013 broggi_t
-## Last update Sat Dec 14 02:42:30 2013 broggi_t
+## Last update Sun Dec 15 14:18:10 2013 broggi_t
 ##
 
 SRC_C	= get_next_line.c \
-	  my_str.c
+	  my_str.c \
+	  my_strcmp.c
 
-SRC_D	= # SOURCES DU DECODE
+SRC_D	= decode_error.c \
+	  decode_calcul.c
 
-SRC_E	= # SOURCES DU ENCODE
+SRC_E	= encode.c
 
 OBJ_C	= $(SRC_C:.c=.o)
 
