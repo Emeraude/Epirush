@@ -5,7 +5,7 @@
 ** Login   <bouche_1@epitech.net>
 ** 
 ** Started on  Sat Dec 14 15:39:02 2013 bouche_1
-** Last update Sun Dec 15 14:16:12 2013 broggi_t
+** Last update Sun Dec 15 15:35:21 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -18,9 +18,9 @@ void		my_compare(char *src)
   int		i;
 
   i = 0;
-  while (my_strcmp(src, g_tab[i].str) && i < 37)
+  while (my_strcmp(src, g_tab[i].str) && i < 36)
     i = i + 1;
-  if (i == 37)
+  if (i == 36)
     {
       my_puterr("\033[31mAn incorrect character has been found.\n\033[0m");
       exit(1);

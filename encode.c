@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Fri Dec 13 19:37:01 2013 broggi_t
-** Last update Sat Dec 14 17:02:13 2013 broggi_t
+** Last update Sun Dec 15 15:35:40 2013 broggi_t
 */
 
 #include <stdlib.h>
@@ -45,9 +45,7 @@ int		check_line(char *str)
 	    (str[i] >= '0' && str[i] <= '9') ||
 	    str[i] == '.'))
 	{
-	  my_puterr("\033[31mAn incorrect character has been found : ");
-	  my_putcharerr(str[i]);
-	  my_puterr(".\n\033[0m");
+	  my_puterr("\033[31mAn incorrect character has been found.\n\033[0m");
 	  return (1);
 	}
       i++;

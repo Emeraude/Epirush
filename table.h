@@ -5,7 +5,7 @@
 ** Login   <broggi_t@epitech.net>
 ** 
 ** Started on  Sat Dec 14 01:18:20 2013 broggi_t
-** Last update Sat Dec 14 15:34:07 2013 broggi_t
+** Last update Sun Dec 15 15:35:05 2013 broggi_t
 */
 
 #ifndef TABLE_H_
@@ -19,7 +19,6 @@ typedef struct	s_tab
 
 t_tab           g_tab[] =
 {
-  {'0', "_._._._._"},
   {'1', "-._._._._"},
   {'2', "-.-._._._"},
   {'3', "-.-.-._._"},
