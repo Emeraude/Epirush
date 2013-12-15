@@ -5,7 +5,7 @@
 ## Login   <broggi_t@epitech.net>
 ## 
 ## Started on  Sat Dec 14 02:31:56 2013 broggi_t
-## Last update Sun Dec 15 14:18:10 2013 broggi_t
+## Last update Sun Dec 15 16:20:19 2013 broggi_t
 ##
 
 SRC_C	= get_next_line.c \
@@ -28,6 +28,8 @@ NAME	= encodeur
 NAME2	= décodeur
 
 RM	= rm -f
+
+CFLAGS	+= -W -Wall -Wextra -ansi -pedantic
 
 all:	$(NAME) $(NAME2)
 
